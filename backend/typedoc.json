@@ -1,0 +1,24 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs/technical",
+  "exclude": [
+    "**/node_modules/**",
+    "**/*.spec.ts"
+  ],
+  "theme": "default",
+  "name": "FoodieShare API Documentation",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "categorizeByGroup": true,
+  "categoryOrder": ["Controllers", "Models", "Services", "Middleware", "*"],
+  "plugin": ["typedoc-plugin-markdown"],
+  "readme": "README.md",
+  "includeVersion": true,
+  "disableSources": false,
+  "cleanOutputDir": true,
+  "githubPages": false,
+  "externalPattern": ["**/node_modules/**"],
+  "excludeExternals": true,
+  "excludeNotDocumented": false,
+  "hideGenerator": true
+}
