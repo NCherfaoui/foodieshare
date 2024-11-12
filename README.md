@@ -47,31 +47,27 @@ FoodieShare est une plateforme moderne de partage de recettes qui permet aux pas
 - TypeScript
 - JWT
 
+## 🚀 Pré-requis
+- Node.js 18 ou plus
+- MongoDB installé ou avec Docker
+- Docker installé et en cours d'exécution
+- Git
+
+## 🧭 Pré-requis supplemmentaires
+- [Sentry](https://sentry.io)
+- [Prometheus](https://prometheus.io)
+- [Grafana](https://grafana.com)
+
+
 ## 🚀 Installation
 ```
 # Cloner le projet
 git clone https://github.com/NCherfaoui/foodieshare.git
-
-# Installation des dépendances Frontend
-cd frontend
-npm install
-
-# Installation des dépendances Backend
-cd backend
-npm install
-
-# Configuration des variables d'environnement
-cp .env.exemple .env.development
-
-# Démarrer le serveur de développement Frontend
-npm run dev
-
-# Démarrer le serveur de développement Backend
-npm run dev
-```
+``` 
 
 ### 📝 Configuration
-Créez les fichiers `.env.development` dans les dossiers frontend et backend :
+Créez soit: 
+- les fichiers `.env.development` dans les dossiers frontend et backend :
 
 - Frontend (`.env.development`)
 ```
@@ -84,6 +80,109 @@ MONGODB_URI=mongodb://localhost:27017/foodieshare
 JWT_SECRET=votre_secret_jwt
 CORS_ORIGIN=http://localhost:5173
 ```
+- Ou à la racine du projet (`.env.development`):
+
+```# MongoDB
+MONGO_USER=admin
+MONGO_PASSWORD=password
+MONGODB_URI=mongodb://admin:password@mongodb:27017/foodieshare
+
+# Redis
+REDIS_URL=redis://redis:6379
+
+# API
+PORT=3000
+API_URL=http://localhost:3000/api
+
+# Frontend
+VITE_API_URL=http://localhost:3000/api
+
+# JWT
+JWT_SECRET=votre_secret_jwt
+
+# CORS
+CORS_ORIGIN=http://localhost:5173
+```
+
+
+### 📦 Installation des dépendances
+```bash
+# Installation des dépendances Frontend
+cd frontend
+npm install
+
+# Installation des dépendances Backend
+cd backend
+npm install
+
+# Configuration des variables d'environnement
+cp .env.exemple .env.development
+```
+
+### 🚀 Démarrage
+```bash
+
+# Démarrer le serveur de développement Frontend
+npm run dev
+
+# Démarrer le serveur de développement Backend
+npm run dev
+```
+### 🚀 Lancement avec Docker 
+1. Vérifier que Docker Desktop est en cours d'exécution
+2. Démarrer l'application en mode développement :
+
+```bash
+docker compose -f docker-compose.dev.yml up
+```
+3. L'application sera accessible sur :
+
+* Frontend : http://localhost:5173
+* API : http://localhost:3000
+* MongoDB : localhost:27017
+* Redis : localhost:6379
+* Grafana : http://localhost:3000/grafana
+* Prometheus : http://localhost:3000/prometheus
+
+#### Arrêt de l'application
+pour arreter l'application :
+```bash
+docker compose -f docker-compose.dev.yml down
+```
+
+## 🔧 Commandes Utiles 
+```bash
+# Reconstruction des images
+docker compose -f docker-compose.dev.yml up --build
+
+# Voir les logs
+docker compose -f docker-compose.dev.yml logs -f
+
+# Redémarrer un service spécifique
+docker compose -f docker-compose.dev.yml restart <service-name>
+
+# Nettoyer les volumes
+docker compose -f docker-compose.dev.yml down -v
+```
+## 🛠️ Dépannage 
+1. Erreur de connexion à MongoDB
+- Vérifier que les credentials dans .env.development correspondent
+- Vérifier que le service MongoDB est bien démarré
+
+2. Le hot-reload ne fonctionne pas
+
+- Vérifier que les volumes sont correctement montés
+- Redémarrer le service concerné
+
+3.  Problèmes de permissions Docker
+
+- Sous Windows, vérifier que Docker Desktop a les droits administrateur
+
+
+
+---
+
+## 📚 Documentation du projet
 
 ## 🛠️ Configuration des rôles
 
@@ -101,6 +200,8 @@ CORS_ORIGIN=http://localhost:5173
 
 ## 📚 Documentation API
 La documentation de l'API est disponible à l'adresse : `http://localhost:3000/api-docs`
+
+---
 
 ## 🤝 Contribution
 Les contributions sont les bienvenues ! N'hésitez pas à :
