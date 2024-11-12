@@ -1,0 +1,69 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: foodieshare-frontend-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - api
+    networks:
+      - foodieshare-network
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: foodieshare-api-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongodb:27017/foodieshare
+      - REDIS_URL=redis://redis:6379
+    env_file:
+      - .env.development
+    command: sh -c "npm run seed:env && npm run dev"
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - foodieshare-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: foodieshare-mongodb-dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - foodieshare-network
+
+  redis:
+    image: redis:alpine
+    container_name: foodieshare-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - foodieshare-network
+
+volumes:
+  mongodb_data:
+  redis_data:
+
+networks:
+  foodieshare-network:
+    driver: bridge

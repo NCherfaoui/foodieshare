@@ -1,4 +1,5 @@
 # FoodieShare - Plateforme de Partage de Recettes
+![CI](https://github.com/{owner}/{repo}/workflows/Intégration%20Continue/badge.svg)
 
 ## 🌟 À propos
 FoodieShare est une plateforme moderne de partage de recettes qui permet aux passionnés de cuisine de partager, découvrir et interagir avec des recettes du monde entier.
@@ -81,7 +82,7 @@ VITE_API_URL=http://localhost:3000/api
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/foodieshare
 JWT_SECRET=votre_secret_jwt
-CORS_ORIGIN=http://localhost:8080
+CORS_ORIGIN=http://localhost:5173
 ```
 
 ## 🛠️ Configuration des rôles
@@ -113,5 +114,5 @@ Les contributions sont les bienvenues ! N'hésitez pas à :
 ## 📄 Licence
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
-## ✍️ Auteurs
+## ✍️ Auteur
 - Nassim CHERFAOUI - [GitHub](https://github.com/NCherfaoui)

@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Installation des dépendances
+COPY package*.json ./
+RUN npm install
+
+# Pour le hot-reload, on ne copie pas les fichiers
+# ils seront montés via un volume dans docker-compose
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host"]

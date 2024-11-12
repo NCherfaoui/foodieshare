@@ -30,7 +30,7 @@ export const recipeController = {
     res: Response,
     next: NextFunction
   ) {
-    console.log("Query params:", req.query); // Debug
+
 
     try {
       const {
@@ -160,7 +160,7 @@ export const recipeController = {
       recipeObj.isFavorited = false;
 
       // Vérifier si l'utilisateur est authentifié et si la recette est dans ses favoris
-      console.log(req.user);
+     
       if (req.user) {
         const user = await User.findById(req.user.id);
         if (user) {
