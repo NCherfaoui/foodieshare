@@ -1,6 +1,5 @@
 # FoodieShare - Plateforme de Partage de Recettes
-![CI](https://github.com/{owner}/{repo}/workflows/Intégration%20Continue/badge.svg)
-
+[![Intégration Continue](https://github.com/NCherfaoui/foodieshare/actions/workflows/ci.yml/badge.svg)](https://github.com/NCherfaoui/foodieshare/actions/workflows/ci.yml)
 ## 🌟 À propos
 FoodieShare est une plateforme moderne de partage de recettes qui permet aux passionnés de cuisine de partager, découvrir et interagir avec des recettes du monde entier.
 
